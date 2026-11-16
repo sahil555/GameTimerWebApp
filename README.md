@@ -37,17 +37,11 @@ npm run preview
 3. Open **Settings → Pages** in the repository.
 4. Under **Build and deployment → Source**, choose **GitHub Actions**.
 5. The workflow at `.github/workflows/deploy.yml` builds and deploys the app whenever you push to `main`.
-6. After the workflow succeeds, open `https://YOUR-USERNAME.github.io/game-timer/`.
+6. After the workflow succeeds, open the Pages URL shown in the deployment environment.
 
-### Important: repository name and URL
+### Base path
 
-The included `vite.config.js` uses `/game-timer/` as the production base path. If your repository has a different name, update this line:
-
-```js
-base: process.env.GITHUB_ACTIONS === "true" ? "/YOUR-REPOSITORY-NAME/" : "/",
-```
-
-If deploying to a user/organization site repository named `YOUR-USERNAME.github.io`, use `/` as the production base path instead.
+The workflow reads the base path from GitHub Pages and passes it to Vite during the build. Project sites, user/organization sites, and custom domains therefore use the appropriate asset paths without changing `vite.config.js`. Local builds use `/`.
 
 ## How share links work
 
